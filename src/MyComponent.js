@@ -1,6 +1,7 @@
 import React from "react";
 
 import Button from "./Button"; //在同一層使用./
+import MyButton from "./MyButton";
 
 // **元件檔案名稱需使用大寫
 // 1. class ES6 類別元件
@@ -8,10 +9,29 @@ import Button from "./Button"; //在同一層使用./
 
 //所有要return出來的元素,在第一層只能有一個標籤,用空標籤(fragment)標籤把他包起來
 //元件可重複被使用
+
+//元件的props
+
 const MyComponent = () => {
   return (
     <>
       <input /> <Button />
+      <MyButton
+        text={"取消"}
+        handleClick={() => {
+          window.alert("取消");
+        }}
+      />
+      {/* children props寫法 */}
+      <MyButton>取消</MyButton>
+      <MyButton
+        text={"好的"}
+        handleClick={() => {
+          window.alert("好的");
+        }}
+      />
+      {/* children props寫法 */}
+      <MyButton>好的</MyButton>
     </>
   );
 };
