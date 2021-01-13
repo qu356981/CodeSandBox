@@ -10,12 +10,23 @@ import MyButton from "./MyButton";
 //所有要return出來的元素,在第一層只能有一個標籤,用空標籤(fragment)標籤把他包起來
 //元件可重複被使用
 
-//元件的props
+//元件的 props
+//元件的 status(狀態)
 
 const MyComponent = () => {
+  const [inputValue, setInputValue] = React.useState("123");
   return (
     <>
-      <input /> <Button />
+      <input
+        value={inputValue}
+        onInput={(e) => {
+          // window.alert(e.target.value);
+          const newValue = e.target.value;
+          setInputValue(newValue);
+        }}
+      />
+      <p>文字輸入框裡面的內容：{inputValue}</p>
+      <Button />
       <MyButton
         text={"取消"}
         handleClick={() => {
