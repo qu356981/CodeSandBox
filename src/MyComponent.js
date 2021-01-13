@@ -11,12 +11,34 @@ import MyButton from "./MyButton";
 //元件可重複被使用
 
 //元件的 props
-//元件的 status(狀態)
+//元件的 status(狀態), useState會回傳一個陣列
+//元件的 side effect, useEffect函式第二個參數是一個陣列,陣列裡面只要有任何一個值被改變就會重新執行一次裡面的side effect
 
 const MyComponent = () => {
-  const [inputValue, setInputValue] = React.useState("123");
+  const [second, setSecond] = React.useState(1);
+  const [inputValue, setInputValue] = React.useState("123"); //* status
+  const [time, setTime] = React.useState(new Date()); //side effect
+  React.useEffect(() => {
+    const intervalId = setInterval(() => {
+      setTime(new Date());
+    }, second * 1000);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [second]);
   return (
     <>
+      {/* side effect */}
+      <p>現在時間：{time.toLocaleString()}</p>
+      <input
+        value={second}
+        onInput={(e) => {
+          // window.alert(e.target.value);
+          setSecond(e.target.value);
+        }}
+      />
+      {/* status */}
       <input
         value={inputValue}
         onInput={(e) => {
@@ -26,6 +48,8 @@ const MyComponent = () => {
         }}
       />
       <p>文字輸入框裡面的內容：{inputValue}</p>
+
+      {/* prop */}
       <Button />
       <MyButton
         text={"取消"}
