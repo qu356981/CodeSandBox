@@ -1,0 +1,12 @@
+.description {
+  width: 400px;
+  height: 200px;
+  line-height: 200px;
+  text-align: center;
+  vertical-align: middle;
+  border: 1px dashed #333;
+  border-radius: 10px;
+  font-weight: bold;
+  font-family: 微軟正黑體;
+  text-decoration: underline;
+}
